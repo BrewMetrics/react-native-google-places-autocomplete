@@ -597,7 +597,10 @@ export default class GooglePlacesAutocomplete extends Component {
     });
   }
 
-  _onFocus = () => this.setState({ listViewDisplayed: true })
+  _onFocus = () => {
+    if (typeof this.props.onFocus == 'function') this.props.onFocus();
+    this.setState({ listViewDisplayed: true });
+  }
 
   _renderPoweredLogo = () => {
     if (!this._shouldShowPoweredLogo()) {
